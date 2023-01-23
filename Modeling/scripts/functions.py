@@ -21,7 +21,6 @@ def get_dataset(_csv_path: str) -> pd.DataFrame :
     _data['Number of facades'] = _data['Number of facades'].astype(int)
     # Reset index after drop
     # _data = _data.reset_index()
-
     return _data
 
 # Add zipcode columns from csv, based on locality column

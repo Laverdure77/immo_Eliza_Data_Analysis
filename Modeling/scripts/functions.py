@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 
 # Create and prepare dataset from data scrapping csv
 def get_dataset(_csv_path: str) -> pd.DataFrame :
+    
     _data = pd.read_csv(_csv_path)
     # Remove unnecessary datas
     # Remove Duplicates (same immoweb id)
@@ -17,10 +18,34 @@ def get_dataset(_csv_path: str) -> pd.DataFrame :
     _data = _data.drop(_data[_data['House or appartment?'] == 'HOUSE_GROUP'].index)
     # Remove Public sales
     _data = _data.drop(_data[_data['Type of sale'] == 'PUBLIC_SALE'].index)
-    _data['Number of rooms'] = _data['Number of rooms'].astype(int)
-    _data['Number of facades'] = _data['Number of facades'].astype(int)
+    # Remove Surface of land
+    _data = _data.drop((_data[_data['Land surface'].isna()].index))
+    # _data = _data.drop((_data[_data['Area of garden'].isna()].index))
+    _data = _data.drop((_data[_data['Subtype'].isna()].index))
+    
+    # pd.to_numeric(_data['Number of facades'], errors = 'coerce' )
     # Reset index after drop
     # _data = _data.reset_index()
+    return _data
+
+# Set type
+def set_type(_data: pd.DataFrame):
+    # _data.replace('None', pd.NA)
+    _data['Number of rooms'] = _data['Number of rooms'].astype(int)
+
+    _data['Number of facades'] = _data['Number of facades'].replace({'None' :np.NaN, 'NAN' : np.NaN})
+    _data['Number of facades'] = _data['Number of facades'].astype(float)
+    mean_facades = _data['Number of facades'].mean(skipna= True)
+    _data['Number of facades'] = _data['Number of facades'].fillna(value=mean_facades)
+
+    _data['Land surface'] = _data['Land surface'].replace({'None' :np.NaN, 'NAN' : np.NaN})
+    _data['Land surface'] = _data['Land surface'].astype(float)
+    mean_facades = _data['Land surface'].mean(skipna= True)
+    _data['Land surface'] = _data['Land surface'].fillna(value=mean_facades)
+
+    _data['Area of garden'] = _data['Area of garden'].replace({'None' : int(0), 'NAN' : int(0)})
+    _data['Area of garden'] = _data['Area of garden'].astype(int)
+
     return _data
 
 # Add zipcode columns from csv, based on locality column

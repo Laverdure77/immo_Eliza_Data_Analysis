@@ -35,17 +35,21 @@ def set_type(_data: pd.DataFrame):
 
     _data['Number of facades'] = _data['Number of facades'].replace({'None' :np.NaN, 'NAN' : np.NaN})
     _data['Number of facades'] = _data['Number of facades'].astype(float)
-    mean_facades = _data['Number of facades'].mean(skipna= True)
-    _data['Number of facades'] = _data['Number of facades'].fillna(value=mean_facades)
+    _mean_facades = _data['Number of facades'].mean(skipna= True)
+    _data['Number of facades'] = _data['Number of facades'].fillna(value=_mean_facades)
 
-    _data['Land surface'] = _data['Land surface'].replace({'None' :np.NaN, 'NAN' : np.NaN})
+    _data['Land surface'] = _data['Land surface'].replace({'None' :0 , 'NAN' : 0})
     _data['Land surface'] = _data['Land surface'].astype(float)
-    mean_facades = _data['Land surface'].mean(skipna= True)
-    _data['Land surface'] = _data['Land surface'].fillna(value=mean_facades)
+    # _mean_facades = _data['Land surface'].mean(skipna= True)
+    # _data['Land surface'] = _data['Land surface'].fillna(value=_mean_facades)
 
     _data['Area of garden'] = _data['Area of garden'].replace({'None' : int(0), 'NAN' : int(0)})
     _data['Area of garden'] = _data['Area of garden'].astype(int)
 
+    category_type = ['House or appartment?', 'Subtype', 'Type of sale', 'Region', 'Province', 'State of building', 'Furnished', 'Type of sale']
+    for cat in category_type:
+        _data[cat] = _data[cat].astype('category')
+    
     return _data
 
 # Add zipcode columns from csv, based on locality column

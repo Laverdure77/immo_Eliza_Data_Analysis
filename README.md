@@ -1,4 +1,8 @@
-# immo_Eliza_Data_Analysis
+# Immo_Eliza
+
+## Data_Scrapping
+
+## Data_Analysis
 
 ## Data analysis of the data scrapped from immo web site
 
@@ -35,3 +39,46 @@
 #### Belgium map mean price per square meters  
 
 ![Alt text](Graphs/MapBelgiumPSQM.png)
+
+## Data Modeling
+
+### Modeling the price of houses across Belgium
+
+From the datas collected, try to model the price of houses across Belgium.
+
+#### Data Cleaning
+
+- load the datas from csv file.  
+- adding columns for zip code, province and region.  
+- Ensure the type of each column is consistent  
+
+#### Correlation
+
+- Explore Correlation between features  
+![Alt text](Graphs/corr_matrix.png)
+![Alt text](Graphs/corr_to_price.png)
+
+#### Manage outliers
+
+Remove outliers
+State of the dataset before and after removing outliers on price for example:
+![Alt text](Graphs/before_outliers-price.png)
+![Alt text](Graphs/after_outliers-price.png)
+
+#### Select target and features for modeling
+
+-Target : House price
+-Features: selected according to the correlation  
+-Categorical features : get dummies  
+-Different type of normalisation tested  
+
+#### Linear Regression
+
+Regressor used : LinearRegression and GradientBoostingRegressor from sklearn
+
+Results
+![Alt text](Graphs/Coef.png)  
+![Alt text](Graphs/Coef2.png)  
+![Alt text](Graphs/price_vs_living_area.png)  
+![Alt text](Graphs/price_vs_rooms.png)  
+![Alt text](Graphs/cross_validation.png)  

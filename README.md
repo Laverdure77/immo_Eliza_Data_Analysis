@@ -4,7 +4,7 @@
 
 to be completed
 
-## Data analysis of the data scrapped from immo web site
+## Data analysis  
 
 ### Main jupyter note book
 

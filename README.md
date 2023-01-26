@@ -1,10 +1,10 @@
 # Immo_Eliza
 
-## Data_Scrapping
+## Data Scrapping
 
 to be completed
 
-## Data analysis  
+## Data Analysis  
 
 ### Main jupyter note book
 

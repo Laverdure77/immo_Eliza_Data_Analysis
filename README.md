@@ -69,7 +69,7 @@ State of the dataset before and after removing outliers on price for example:
 
 -Target: House price  
 -Features: selected according to the correlation  
--Categorical features: get dummies  
+-Convert categorical variable into dummy/indicator variables  
 -Different type of normalisation tested  
 
 #### Linear Regression
@@ -77,8 +77,12 @@ State of the dataset before and after removing outliers on price for example:
 Regressor used : LinearRegression and GradientBoostingRegressor from sklearn
 
 Results  
+Regressor score
 ![Alt text](Graphs/Coef.png)  
+Metrics
 ![Alt text](Graphs/Coef2.png)  
+Regression line Price vs Living area and number of rooms
 ![Alt text](Graphs/price_vs_living_area.png)  
 ![Alt text](Graphs/price_vs_rooms.png)  
+Cross validation
 ![Alt text](Graphs/cross_validation.png)  

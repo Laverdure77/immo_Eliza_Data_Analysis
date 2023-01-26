@@ -60,23 +60,23 @@ From the datas collected, try to model the price of houses across Belgium.
 
 #### Manage outliers
 
-Remove outliers
+Remove outliers.  
 State of the dataset before and after removing outliers on price for example:
 ![Alt text](Graphs/before_outliers-price.png)
 ![Alt text](Graphs/after_outliers-price.png)
 
 #### Select target and features for modeling
 
--Target : House price
+-Target: House price  
 -Features: selected according to the correlation  
--Categorical features : get dummies  
+-Categorical features: get dummies  
 -Different type of normalisation tested  
 
 #### Linear Regression
 
 Regressor used : LinearRegression and GradientBoostingRegressor from sklearn
 
-Results
+Results  
 ![Alt text](Graphs/Coef.png)  
 ![Alt text](Graphs/Coef2.png)  
 ![Alt text](Graphs/price_vs_living_area.png)  

@@ -82,7 +82,6 @@ Regressor score
 ![Alt text](Graphs/Coef.png) 
 
 Metrics
-
 ![Alt text](Graphs/Coef2.png)  
 
 Regression line Price vs Living area and number of rooms  

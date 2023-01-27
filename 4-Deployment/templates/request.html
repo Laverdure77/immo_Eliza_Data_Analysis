@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+</head>
+<body>
+    <h1>Price prediction : Houses in Belgium</h1>
+    <form action="http://localhost:5000/form" method="post">
+        <p>Select features:</p>
+        <div>
+            <label for="state_of_builging">State of building</label>
+            <div>
+                <select name="state" id="state_of_builging">
+                    <option value="">--Please select an option--</option>
+                    <option value="Good">Good</option>
+                    <option value="Bad">Bad</option>
+
+                </select>
+            </div>
+        </div>
+        <div>
+            <label for="living_area">Living area, in m²:</label>
+            <div>
+                <input type="number" name="living area" value="living_area" required="required" >
+                
+            </div>
+        </div>
+
+        <div>
+            <label for="number_of_rooms">Number of rooms</label>
+            <div>
+                <input type="range" min="1" max="20" value="5" class="slider" name="number_of_rooms">
+            </div>
+        </div>
+        <div>
+            <label for="province_select">Province</label>
+            <div>
+            <select name="province" id="province_select">
+                <option value="">--Please select an option--</option>
+                <option value="Bruxelles">Bruxelles</option>
+                <option value="Wallonie">Wallonie</option>
+                <option value="Flandre">Flandre</option>
+            </select>
+                
+            </div>
+        </div>
+        <div>
+            <input type="submit" value="submit">
+        </div>
+    </form>
+</body>
+</html>

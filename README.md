@@ -92,3 +92,16 @@ Regression line Price vs Living area and number of rooms
 
 Cross validation  
 ![Alt text](Graphs/cross_validation.png)  
+
+#### Interpretation
+
+compare model : reln and rad improvedon gradboost
+1 week
+scoreon test not fantastic
+some wierd point to investigate, time out for project
+reduced nbr rows
+using other model
+increase dataset
+hyper paramters finetuning
+
+

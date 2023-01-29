@@ -44,7 +44,21 @@ to be completed
 
 ### Modeling the price of houses across Belgium
 
-From the datas collected, try to model the price of houses across Belgium.
+Time line for this project: 1 week.
+
+From the datas collected, try to model the price of houses across Belgium, based on the following features:
+living area, number of rooms, number of facades, state of building,  
+land surface, area of garden, subtype, and province.  
+
+Using sklearn library, I compared the result of two models : LinearRegression and GradientBoost.
+The last one giving me the best score.
+Using cross validation to check the consistency of the results, shows a dramatic drop of the results.
+Possible reasons:
+Low numbers of rows fitted in the model: from 23000 to 5000 after cleaning and selecting relevant datas.  
+Even thought outliers have been managed, some strange point seems to remain in th dataset, requirering more investigation.  
+keep row zip code information instaed of grouping by province could increase the performance of the models.  
+Investigate on using standardisation of normalisation to improve model score.  
+Avoid repalcing missing values by mean or median.
 
 #### Data Cleaning
 
@@ -79,11 +93,12 @@ Regressor used : LinearRegression and GradientBoostingRegressor from sklearn
 Results:  
 Regressor score
 
-![Alt text](Graphs/Coef.png) 
+![Alt text](Graphs/Coef.png)  
 
 Metrics
 
 ![Alt text](Graphs/Coef2.png)  
+![Alt text](Graphs/cross_validation_values.png)  
 
 Regression line Price vs Living area and number of rooms  
 
@@ -103,5 +118,6 @@ reduced nbr rows
 using other model
 increase dataset
 hyper paramters finetuning
+normalisation check only on num valuesn ot apply globally, or not for grad boos, managing internally
 
 

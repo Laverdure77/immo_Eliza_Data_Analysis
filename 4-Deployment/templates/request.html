@@ -5,131 +5,140 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="../static/css/style.css">
 
     <title>Results</title>
 </head>
 <body>
-    <h1>Price prediction : Houses in Belgium</h1>
-    <form action="http://localhost:5000/form" method="post">
-        <p>Select features:</p>
-
-        <div>
-            <label for="living_area">Living area, in m²:</label>
-            <div>
-                <input type="number" name="living area" value="living_area" required="required" >
-                
-            </div>
+    <div class="container">
+        <div class="container">
+            <h1>Price prediction : Houses in Belgium</h1>
         </div>
+
+        <form action="http://localhost:5000/form" method="post">
+            <div class="form-group" id="app">
+                <p>Select features:</p>
+                
+                <div>
+                    <label for="living_area">Living area: {{ sliderLivingArea }} m²:</label>
+                    <div>
+                        <input type="range" name="living area" min="1" max="500" class="'slider'" v-model="sliderLivingArea" required="required">
+                    </div>
+                </div>
+                    
+                <div>
+                    <label for="number_of_rooms">Number of rooms: {{ sliderRooms }}</label>
+                    <div >
+                        <input type="range" name="number of rooms" min="1" max="20" class="slider" v-model="sliderRooms" required="required">
+                    </div>
+                </div>
+                    
+                <div>
+                    <label for="number_of_facades">Number of facades: {{ sliderFacades }}</label>
+                    <div>
+                        <input type="range" name="number of facades" min="2" max="4" value="2" class="slider" v-model="sliderFacades" required="required">
+                    </div>
+                </div>
+                    
+                <div>
+                    <label for="garden_area">Garden area: {{ sliderGardenArea }} m²:</label>
+                    <div>
+                        <input type="range" name="garden area" min="0" max="5000" value="garden_area" class="slider" v-model="sliderGardenArea" required="required" >
+                    </div>
+                </div>
+                    
+                <div>
+                    <label for="land_surface">Land surface: {{ sliderLandSurface }} m²:</label>
+                    <div>
+                        <input type="range" name="land surface" min="0" max="5000" value="land_surface" class="slider" v-model="sliderLandSurface" required="required" >
+                    </div>
+                </div>
+                    
+                <div>
+                    <label for="province_select">Province</label>
+                        <div>
+                            <select name="province" id="province_select" required="required">
+                                <option value="">--Please select a Province--</option>
+                                <option value="Province_Bruxelles">Bruxelles</option>
+                                <option value="Province_Flandre_occidentale">Flandre Occidentale</option>
+                                <option value="Province_Flandre_orientale">Flandre Orientale</option>
+                                <option value="Province_Anvers">Anvers</option>
+                                <option value="Province_Limbourg">Limbourg</option>
+                                <option value="Province_Brabant_flamand">Brabant Flamand</option>
+                                <option value="Province_Brabant_wallon">Province Brabant Wallon</option>
+                                <option value="Province_Namur">Namur</option>
+                                <option value="Province_Liege">Liege</option>
+                                <option value="Province_Hainaut">Hainaut</option>
+                                <option value="Province_Luxembourg">Luxembourg</option>
+                            </select>
+                            
+                        </div>
+                </div>
+                    
+                <div>
+                    <label for="subtype">Subtype</label>
+                        <div>
+                            <select name="subtype" id="subtype" required="required">
+                                <option value="">--Please select an option--</option>
+                                <option value="Subtype_HOUSE">HOUSE</option>
+                                <option value="Subtype_VILLA">VILLA</option>
+                                <option value="Subtype_BUNGALOW">BUNGALOW</option>
+                                <option value="Subtype_FARMHOUSE">FARMHOUSE</option>
+                                <option value="Subtype_CASTLE">CASTLE</option>
+                                <option value="Subtype_CHALET">CHALET</option>
+                                <option value="Subtype_COUNTRY_COTTAGE">COUNTRY_COTTAGE</option>
+                                <option value="Subtype_EXCEPTIONAL_PROPERTY">EXCEPTIONAL_PROPERTY</option>
+                                <option value="Subtype_KOT">KOT</option>
+                                <option value="Subtype_LOFT">LOFT</option>
+                                <option value="Subtype_MANOR_HOUSE">MANOR_HOUSE</option>
+                                <option value="Subtype_MANSION">MANSION</option>
+                                <option value="Subtype_MIXED_USE_BUILDING">MIXED_USE_BUILDING</option>
+                                <option value="Subtype_OTHER_PROPERTY">OTHER_PROPERTY</option>
+                                <option value="Subtype_SERVICE_FLAT">SERVICE_FLAT</option>
+                                <option value="Subtype_TOWN_HOUSE">TOWN_HOUSE</option>
+                            </select>
+                        </div>
+                </div>
+                    
+                <div>
+                    <label for="state_of_builging">State of building</label>
+                        <div>
+                            <select name="state" id="state_of_builging" required="required">
+                                <option value="">--Please select an option--</option>
+                                <option value="State of building_None">None</option>
+                                <option value="State of building_AS_NEW">As new</option>
+                                <option value="State of building_GOOD">Good</option>
+                                <option value="State of building_JUST_RENOVATED">Just renovated</option>
+                                <option value="State of building_TO_BE_DONE_UP">To be done up</option>
+                                <option value="State of building_TO_RENOVATE">To renovate</option>
+                                <option value="State of building_TO_RESTORE">To restore</option>
+                            </select>
+                        </div>
+                </div>
+            </div>
+                
+            <div>
+                <input type="submit" value="submit">
+            </div>
+                
+        </form>
+    </div>
+
+
+    <script>
+        const { createApp } = Vue
         
-        <div>
-            <label for="number_of_rooms">Number of rooms</label>
-            <div>
-                <input type="range" name="number of rooms" min="1" max="20" value="5" class="slider" v-model="sliderValue" required="required">
-            </div>
-        </div>
-        <!-- <div id="app">{{ sliderValue }}</div>
-
-            <script>
-            const { createApp } = Vue
-
-            createApp({
-                data() {
-                return {
-                    message: 'Hello Vue!',
-                    sliderValue: 5
-                }
-                }
-            }).mount('#app')
-            </script> -->
-
-        <div>
-            <label for="number_of_facades">Number of facades</label>
-            <div>
-                <input type="range" name="number of facades" min="2" max="4" value="2" class="slider"  required="required">
-            </div>
-        </div>
-        
-        <div>
-            <label for="garden_area">Garden area, in m²:</label>
-            <div>
-                <input type="number" name="garden area" value="garden_area" required="required" >
-                
-            </div>
-        </div>
-
-        <div>
-            <label for="land_surface">Land surface, in m²:</label>
-            <div>
-                <input type="number" name="land surface" value="land_surface" required="required" >
-                
-            </div>
-        </div>
-
-        <div>
-            <label for="province_select">Province</label>
-            <div>
-                <select name="province" id="province_select">
-                    <option value="">--Please select a Province--</option>
-                    <option value="Province_Bruxelles">Bruxelles</option>
-                    <option value="Province_Flandre_occidentale">Flandre Occidentale</option>
-                    <option value="Province_Flandre_orientale">Flandre Orientale</option>
-                    <option value="Province_Anvers">Anvers</option>
-                    <option value="Province_Limbourg">Limbourg</option>
-                    <option value="Province_Brabant_flamand">Brabant Flamand</option>
-                    <option value="Province_Brabant_wallon">Province Brabant Wallon</option>
-                    <option value="Province_Namur">Namur</option>
-                    <option value="Province_Liege">Liege</option>
-                    <option value="Province_Hainaut">Hainaut</option>
-                    <option value="Province_Luxembourg">Luxembourg</option>
-                </select>
-                
-            </div>
-        </div>
-
-        <div>
-            <label for="subtype">Subtype</label>
-            <div>
-                <select name="subtype" id="subtype">
-                    <option value="">--Please select an option--</option>
-                    <option value="Subtype_HOUSE">HOUSE</option>
-                    <option value="Subtype_VILLA">VILLA</option>
-                    <option value="Subtype_BUNGALOW">BUNGALOW</option>
-                    <option value="Subtype_FARMHOUSE">FARMHOUSE</option>
-                    <option value="Subtype_CASTLE">CASTLE</option>
-                    <option value="Subtype_CHALET">CHALET</option>
-                    <option value="Subtype_COUNTRY_COTTAGE">COUNTRY_COTTAGE</option>
-                    <option value="Subtype_EXCEPTIONAL_PROPERTY">EXCEPTIONAL_PROPERTY</option>
-                    <option value="Subtype_KOT">KOT</option>
-                    <option value="Subtype_LOFT">LOFT</option>
-                    <option value="Subtype_MANOR_HOUSE">MANOR_HOUSE</option>
-                    <option value="Subtype_MANSION">MANSION</option>
-                    <option value="Subtype_MIXED_USE_BUILDING">MIXED_USE_BUILDING</option>
-                    <option value="Subtype_OTHER_PROPERTY">OTHER_PROPERTY</option>
-                    <option value="Subtype_SERVICE_FLAT">SERVICE_FLAT</option>
-                    <option value="Subtype_TOWN_HOUSE">TOWN_HOUSE</option>
-                </select>
-            </div>
-        </div>
-
-        <div>
-            <label for="state_of_builging">State of building</label>
-            <div>
-                <select name="state" id="state_of_builging">
-                    <option value="">--Please select an option--</option>
-                    <option value="State of building_None">None</option>
-                    <option value="State of building_AS_NEW">As new</option>
-                    <option value="State of building_GOOD">Good</option>
-                    <option value="State of building_JUST_RENOVATED">Just renovated</option>
-                    <option value="State of building_TO_BE_DONE_UP">To be done up</option>
-                    <option value="State of building_TO_RENOVATE">To renovate</option>
-                    <option value="State of building_TO_RESTORE">To restore</option>
-                </select>
-            </div>
-        </div>
-
-        <div>
-            <input type="submit" value="submit">
-        </div>
-    </form>
+        createApp({
+            data() {
+            return {
+                sliderRooms: 5,
+                sliderLivingArea : 100,
+                sliderFacades : 2,
+                sliderGardenArea : 0,
+                sliderLandSurface: 0
+            }
+        }
+        }).mount('#app')
+    </script>
 </body>
 </html>

@@ -2,3 +2,4 @@ scripts/__pycache__
 venv/**
 !venv/pyvenv.cfg
 Modeling/scripts/__pycache__/**
+3-Modeling/scripts/__pycache__/**

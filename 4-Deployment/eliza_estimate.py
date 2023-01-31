@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def alive():
-    return f"Server is alive"
+    return render_template('request.html')
 
 @app.route('/form',methods = ['POST'])
 def form():

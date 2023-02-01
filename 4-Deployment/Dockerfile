@@ -1,9 +1,10 @@
 FROM python:3.10.1
 RUN mkdir /app
+COPY requirements.txt /app
+COPY . /app
 WORKDIR /app 
-COPY requirements.txt  .
-RUN pip install --upgrade pip && \
-    pip3 install --no-cache-dir -r requirements.txt
-COPY . .
+RUN ls -la /app/*
+RUN python -m pip install --upgrade pip
+RUN pip3 install -r requirements.txt
 EXPOSE 5000
-CMD ["python", "/app/eliza_estimate.py", "--host=0.0.0.0"]
+CMD ["python3", "eliza_estimate.py", "--host=0.0.0.0"]

@@ -12,3 +12,10 @@ h1 {
     color: red;
     text-align: center;
 }
+.form{
+    display:flex
+}
+img{
+    height: 50vw;
+    width: auto;
+}

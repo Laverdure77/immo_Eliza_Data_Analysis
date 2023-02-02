@@ -16,8 +16,6 @@ def alive():
 def form():
     # Load model
     model = pickle.load(open("model/model.pkl","rb"))  
-    #with open("./model/model.pkl","rb") as model_pickle:    
-    #    model = pickle.load(open(model_pickle))      
     # Load X_model df
     # X_request = pd.read_pickle("./model/X_model.pkl")
     X_request = pd.read_pickle("model/X_model.pkl")

@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <link rel="stylesheet" href="../static/css/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
     <title>Results</title>
 </head>
@@ -21,35 +21,35 @@
                         <p>Select features:</p>
                         
                         <div>
-                            <label for="living_area">Living area: {{ sliderLivingArea }} m²:</label>
+                            <label for="living_area">Living area: {{sliderLivingArea}} m²:</label>
                             <div>
                                 <input type="range" name="living area" min="1" max="500" class="'slider'" v-model="sliderLivingArea" required="required">
                             </div>
                         </div>
                             
                         <div>
-                            <label for="number_of_rooms">Number of rooms: {{ sliderRooms }}</label>
+                            <label for="number_of_rooms">Number of rooms: {{sliderRooms}}</label>
                             <div >
                                 <input type="range" name="number of rooms" min="1" max="20" class="slider" v-model="sliderRooms" required="required">
                             </div>
                         </div>
                             
                         <div>
-                            <label for="number_of_facades">Number of facades: {{ sliderFacades }}</label>
+                            <label for="number_of_facades">Number of facades: {{sliderFacades}}</label>
                             <div>
                                 <input type="range" name="number of facades" min="2" max="4" value="2" class="slider" v-model="sliderFacades" required="required">
                             </div>
                         </div>
                             
                         <div>
-                            <label for="garden_area">Garden area: {{ sliderGardenArea }} m²:</label>
+                            <label for="garden_area">Garden area: {{sliderGardenArea}} m²:</label>
                             <div>
                                 <input type="range" name="garden area" min="0" max="5000" value="garden_area" class="slider" v-model="sliderGardenArea" required="required" >
                             </div>
                         </div>
                             
                         <div>
-                            <label for="land_surface">Land surface: {{ sliderLandSurface }} m²:</label>
+                            <label for="land_surface">Land surface: {{sliderLandSurface}} m²:</label>
                             <div>
                                 <input type="range" name="land surface" min="0" max="5000" value="land_surface" class="slider" v-model="sliderLandSurface" required="required" >
                             </div>
@@ -130,21 +130,20 @@
         </div>
     </div>
 
-
-    <script>
-        const { createApp } = Vue
-        
-        createApp({
-            data() {
-            return {
-                sliderRooms: 5,
-                sliderLivingArea : 100,
-                sliderFacades : 2,
-                sliderGardenArea : 0,
-                sliderLandSurface: 0
-            }
+<script>
+    const { createApp } = Vue
+    createApp({
+        data() {
+        return {
+            sliderRooms: 5,
+            sliderLivingArea : 100,
+            sliderFacades : 2,
+            sliderGardenArea : 0,
+            sliderLandSurface: 0
         }
-        }).mount('#app')
-    </script>
+    }
+    }).mount('#app')
+</script>
+
 </body>
 </html>

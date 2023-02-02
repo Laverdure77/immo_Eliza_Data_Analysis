@@ -9,14 +9,18 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def alive():
+    print('Alive')
     return render_template('request.html')
 
 @app.route('/form',methods = ['POST'])
 def form():
     # Load model
-    model = pickle.load(open('4-Deployment\model\model.pkl','rb'))      
+    model = pickle.load(open("model/model.pkl","rb"))  
+    #with open("./model/model.pkl","rb") as model_pickle:    
+    #    model = pickle.load(open(model_pickle))      
     # Load X_model df
-    X_request = pd.read_pickle('4-Deployment\model\X_model.pkl')
+    # X_request = pd.read_pickle("./model/X_model.pkl")
+    X_request = pd.read_pickle("model/X_model.pkl")
     
     # X_request = X_request.fillna(value = 0)
 
@@ -53,4 +57,4 @@ def form():
     
 
 if __name__ == '__main__':
-    app.run(port=5000, debug=True)
+    app.run(port=5000, debug=True, host='0.0.0.0')

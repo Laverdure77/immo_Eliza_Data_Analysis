@@ -3,3 +3,7 @@ venv/**
 !venv/pyvenv.cfg
 Modeling/scripts/__pycache__/**
 3-Modeling/scripts/__pycache__/**
+4-Deployment/static/script/__pycache__/**
+4-Deployment/scripts/__pycache__/**
+4-Deployment/scripts/preprocessing/__pycache__/**
+4-Deployment/scripts/predict/__pycache__/**

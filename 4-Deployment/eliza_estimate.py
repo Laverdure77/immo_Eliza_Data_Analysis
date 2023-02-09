@@ -1,6 +1,9 @@
 from flask import Flask
+from flask import jsonify
 from flask import request
 from flask import render_template
+
+from flask_cors import CORS
 
 from scripts.preprocessing.fillempty import fillempty
 from scripts.preprocessing.loadmodel import loadXtemplate
@@ -9,17 +12,25 @@ from scripts.predict.prediction import prediction
 
 # Instanciate Flask app 
 app = Flask(__name__)
+# Allows cross origin to all routes
+CORS(app)
+cors = CORS(app, resource={
+    r"/*":{
+        "origins":"*"
+    }
+})
 
 # Render input form on load of the application
 @app.route('/', methods=['GET'])
 def alive():
     print('Alive')
-    return render_template('request.html')
+    return render_template('request.html', est_price=0)
 
 # On submit, predict the price using the model
 @app.route('/form',methods = ['POST'])
 def form():
-    
+    content_type = request.headers.get('Content-Type')
+    print(content_type)
     if request.method == 'POST':
         # Load an empty dataframe with the same column names as X_test
         X_template = loadXtemplate()
@@ -31,9 +42,11 @@ def form():
         X_request_cleaned = fillempty(X_request)
         
         # Prediction
-        price_estimate = prediction(X_request_cleaned)
+        price_estimate = f'{prediction(X_request_cleaned):,d}'
+        response = jsonify(prediction = 'ok', result = price_estimate)
+        print(f"prediction returned: {response}")
         
-        return render_template('result.html', est_price=price_estimate)
+        return response
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True, host='0.0.0.0')

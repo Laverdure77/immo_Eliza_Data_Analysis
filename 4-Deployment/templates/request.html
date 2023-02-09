@@ -6,127 +6,194 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <link rel="stylesheet" href="../static/css/style.css">
+    <script src="https://kit.fontawesome.com/6cf1f970c5.js" crossorigin="anonymous"></script>
 
     <title>Results</title>
 </head>
-<body>
-    <div class="container">
-        <div class="container">
-            <h1>Price prediction : Houses in Belgium</h1>
+<body class="hero-image">
+    <div class="banner nav">
+        <div class="banner-content topnav">
+            <p class="underline"></p>
+            <a href="#">Home</a>
+            <a href="#">News</a>
+            <a href="#">Contact</a>
+            <a href="#">About</a>
         </div>
-        <div class="form">
-            <div class="form-left">
-                <form action="/form" method="post" id="app">
-                    <div class="form-group">
-                        <p>Select features:</p>
-                        
-                        <div>
-                            <label for="living_area"> Living area:<span v-text="sliderLivingArea"></span> m²:</label>
-                            <div>
-                                <input type="range" name="living area" min="1" max="500" class="'slider'" v-model="sliderLivingArea" >
-                            </div>
-                        </div>
-                            
-                        <div>
-                            <label for="number_of_rooms"> Number of rooms: <span v-text="sliderRooms"></span></label>
-                            <div >
-                                <input type="range" name="number of rooms" min="1" max="20" class="slider" v-model="sliderRooms" >
-                            </div>
-                        </div>
-                            
-                        <div>
-                            <label for="number_of_facades"> Number of facades: <span v-text="sliderFacades"></span></label>
-                            <div>
-                                <input type="range" name="number of facades" min="2" max="4" value="2" class="slider" v-model="sliderFacades" >
-                            </div>
-                        </div>
-                            
-                        <div>
-                            <label for="garden_area"> Garden area: <span v-text="sliderGardenArea"></span> m²:</label>
-                            <div>
-                                <input type="range" name="garden area" min="0" max="5000" value="garden_area" class="slider" v-model="sliderGardenArea"  >
-                            </div>
-                        </div>
-                            
-                        <div>
-                            <label for="land_surface"> Land surface: <span v-text="sliderLandSurface"></span> m²:</label>
-                            <div>
-                                <input type="range" name="land surface" min="0" max="5000" value="land_surface" class="slider" v-model="sliderLandSurface"  >
-                            </div>
-                        </div>
-                            
-                        <div>
-                            <label for="province_select">Province</label>
-                                <div>
-                                    <select name="province" id="province_select" required="required">
-                                        <option value="">--Please select a Province--</option>
-                                        <option value="Province_Bruxelles">Bruxelles</option>
-                                        <option value="Province_Flandre_occidentale">Flandre Occidentale</option>
-                                        <option value="Province_Flandre_orientale">Flandre Orientale</option>
-                                        <option value="Province_Anvers">Anvers</option>
-                                        <option value="Province_Limbourg">Limbourg</option>
-                                        <option value="Province_Brabant_flamand">Brabant Flamand</option>
-                                        <option value="Province_Brabant_wallon">Province Brabant Wallon</option>
-                                        <option value="Province_Namur">Namur</option>
-                                        <option value="Province_Liege">Liege</option>
-                                        <option value="Province_Hainaut">Hainaut</option>
-                                        <option value="Province_Luxembourg">Luxembourg</option>
-                                    </select>
-                                    
-                                </div>
-                        </div>
-                            
-                        <div>
-                            <label for="subtype">Subtype</label>
-                                <div>
-                                    <select name="subtype" id="subtype" required="required">
-                                        <option value="">--Please select an option--</option>
-                                        <option value="Subtype_HOUSE">HOUSE</option>
-                                        <option value="Subtype_VILLA">VILLA</option>
-                                        <option value="Subtype_BUNGALOW">BUNGALOW</option>
-                                        <option value="Subtype_FARMHOUSE">FARMHOUSE</option>
-                                        <option value="Subtype_CASTLE">CASTLE</option>
-                                        <option value="Subtype_CHALET">CHALET</option>
-                                        <option value="Subtype_COUNTRY_COTTAGE">COUNTRY_COTTAGE</option>
-                                        <option value="Subtype_EXCEPTIONAL_PROPERTY">EXCEPTIONAL_PROPERTY</option>
-                                        <option value="Subtype_KOT">KOT</option>
-                                        <option value="Subtype_LOFT">LOFT</option>
-                                        <option value="Subtype_MANOR_HOUSE">MANOR_HOUSE</option>
-                                        <option value="Subtype_MANSION">MANSION</option>
-                                        <option value="Subtype_MIXED_USE_BUILDING">MIXED_USE_BUILDING</option>
-                                        <option value="Subtype_OTHER_PROPERTY">OTHER_PROPERTY</option>
-                                        <option value="Subtype_SERVICE_FLAT">SERVICE_FLAT</option>
-                                        <option value="Subtype_TOWN_HOUSE">TOWN_HOUSE</option>
-                                    </select>
-                                </div>
-                        </div>
-                            
-                        <div>
-                            <label for="state_of_builging">State of building</label>
-                                <div>
-                                    <select name="state" id="state_of_builging" required="required">
-                                        <option value="">--Please select an option--</option>
-                                        <option value="State of building_None">None</option>
-                                        <option value="State of building_AS_NEW">As new</option>
-                                        <option value="State of building_GOOD">Good</option>
-                                        <option value="State of building_JUST_RENOVATED">Just renovated</option>
-                                        <option value="State of building_TO_BE_DONE_UP">To be done up</option>
-                                        <option value="State of building_TO_RENOVATE">To renovate</option>
-                                        <option value="State of building_TO_RESTORE">To restore</option>
-                                    </select>
-                                </div>
-                        </div>
-                    </div>
-                        
-                    <div>
-                        <input type="submit" value="submit">
-                    </div>
-                        
-                </form>
+    </div>
+    <div class="banner">
+        <div class="banner-content">
+            <div class="title">
+                <h1>Estimate Your Real Estate</h1>
+                <p>Easy to buy & sell your property with Immo Eliza, Top-Class Real Estate Center</p>
             </div>
-            <div class="form-right">
-                <img src="../static/image/backgroung.jpg" alt="building" >
+        </div>
+    </div>
+    <div class="banner">
+        <div class="banner-content">
+            <div class="form-container" id="app">
+                <div class="form-left">
+                    <form @submit.prevent="handleSubmit">
+                        <div class="form-group">
+                            <p>Select features:</p>
+                            
+                            <div>
+                                <label for="living_area"> Living area:<span v-html="form.livingArea"></span> m²:</label>
+                                <div>
+                                    <input type="range" name="living area" min="10" max="500" step="10" class="slider" v-model="form.livingArea" >
+                                </div>
+                            </div>
+                                
+                            <div>
+                                <label for="number_of_rooms"> Number of rooms: <span v-html="form.rooms"></span></label>
+                                <div >
+                                    <input type="range" name="number of rooms" min="1" max="20" class="slider" v-model="form.rooms" >
+                                </div>
+                            </div>
+                                
+                            <div>
+                                <label for="number_of_facades"> Number of facades: <span v-html="form.facades"></span></label>
+                                <div>
+                                    <input type="range" name="number of facades" min="2" max="4" class="slider" v-model="form.facades" >
+                                </div>
+                            </div>
+                                
+                            <div>
+                                <label for="garden_area"> Garden area: <span v-html="form.gardenArea"></span> m²:</label>
+                                <div>
+                                    <input type="range" name="garden area" min="0" max="5000" step="50" class="slider" v-model="form.gardenArea"  >
+                                </div>
+                            </div>
+                                
+                            <div>
+                                <label for="land_surface"> Land surface: <span v-html="form.landSurface"></span> m²</label>
+                                <div>
+                                    <input type="range" name="land surface" min="0" max="5000" step="50"  class="slider" v-model="form.landSurface"  >
+                                </div>
+                            </div>
+                                
+                            <div>
+                                <label for="province_select">Province</label>
+                                    <div>
+                                        <select name="province" id="province_select" v-model="form.province" required="required">
+                                            <option value="">--Please select a Province--</option>
+                                            <option value="Province_Bruxelles">Bruxelles</option>
+                                            <option value="Province_Flandre_occidentale">Flandre Occidentale</option>
+                                            <option value="Province_Flandre_orientale">Flandre Orientale</option>
+                                            <option value="Province_Anvers">Anvers</option>
+                                            <option value="Province_Limbourg">Limbourg</option>
+                                            <option value="Province_Brabant_flamand">Brabant Flamand</option>
+                                            <option value="Province_Brabant_wallon">Brabant Wallon</option>
+                                            <option value="Province_Namur">Namur</option>
+                                            <option value="Province_Liege">Liege</option>
+                                            <option value="Province_Hainaut">Hainaut</option>
+                                            <option value="Province_Luxembourg">Luxembourg</option>
+                                        </select>
+                                    </div>
+                            </div>
+                                
+                            <div>
+                                <label for="subtype">Subtype</label>
+                                    <div>
+                                        <select name="subtype" id="subtype" v-model="form.subtype" required="required">
+                                            <option value="">--Please select an option--</option>
+                                            <option value="Subtype_HOUSE">House</option>
+                                            <option value="Subtype_VILLA">Villa</option>
+                                            <option value="Subtype_BUNGALOW">Bungalow</option>
+                                            <option value="Subtype_FARMHOUSE">Farmhouse</option>
+                                            <option value="Subtype_CASTLE">Castle</option>
+                                            <option value="Subtype_CHALET">Chalet</option>
+                                            <option value="Subtype_COUNTRY_COTTAGE">Country cottage</option>
+                                            <option value="Subtype_EXCEPTIONAL_PROPERTY">Exeptional property</option>
+                                            <option value="Subtype_KOT">Kot</option>
+                                            <option value="Subtype_LOFT">Loft</option>
+                                            <option value="Subtype_MANOR_HOUSE">Manor house</option>
+                                            <option value="Subtype_MANSION">Mansion</option>
+                                            <option value="Subtype_MIXED_USE_BUILDING">Mixed use building</option>
+                                            <option value="Subtype_OTHER_PROPERTY">Other property</option>
+                                            <option value="Subtype_SERVICE_FLAT">Service flat</option>
+                                            <option value="Subtype_TOWN_HOUSE">Town house</option>
+                                        </select>
+                                    </div>
+                            </div>
+                                
+                            <div>
+                                <label for="state_of_builging">State of building</label>
+                                    <div>
+                                        <select name="state" id="state_of_builging" v-model='form.state' required="required">
+                                            <option value="">--Please select an option--</option>
+                                            <option value="State of building_None">None</option>
+                                            <option value="State of building_AS_NEW">As new</option>
+                                            <option value="State of building_GOOD">Good</option>
+                                            <option value="State of building_JUST_RENOVATED">Just renovated</option>
+                                            <option value="State of building_TO_BE_DONE_UP">To be done up</option>
+                                            <option value="State of building_TO_RENOVATE">To renovate</option>
+                                            <option value="State of building_TO_RESTORE">To restore</option>
+                                        </select>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="form-bottom">
+                            <button type="submit"class="btn submit" v-html="submit_button"></button>
+                        </div>
+                            
+                    </form>
+                </div>
+                <div class="form-right">
+                            <div class="container banner">
+                                <div class="box">
+                                    <div class="top">
+                                        <!-- <img src="https://cdn.pixabay.com/photo/2014/07/10/17/18/large-home-389271__340.jpg" alt="" /> -->
+                                        <!-- <img src="https://source.unsplash.com/random/150×200/?house" alt="building"  > -->
+                                        <img :src= urlUnsplash alt="building"  >
+                                        
+                                    </div>
+                                    <div class="bottom">
+                                        <h3><span v-html="subtypes.toUpperCase()"></span> In <span v-html="province"></span></h3>
+                                        <div class="bottom-title">
+                                            <h5>Description</h5>
+                                            <div><i v-for="n in stateCounter" class="fa-sharp fa-solid fa-star"></i></div>
+                                        </div>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit repellendus cupiditate nihil rem totam ut eaque soluta odit eum cum, esse, atque praesentium? Neque debitis sequi possimus animi necessitatibus.
+                                        </p>
+                                    <div class="advants">
+                                        <div>
+                                            <span>Living Area</span>
+                                                <div>
+                                                    <i class="fa-sharp fa-solid fa-house-chimney"></i
+                                                    ><span v-html="form.livingArea"></span><span> m²</span>
+                                                </div>
+                                        </div>
+                                        <div>
+                                            <span>Rooms</span>
+                                                <div>
+                                                    <i class="fa-sharp fa-solid fa-bed"></i><span v-html="form.rooms"></span>
+                                                </div>
+                                            </div>
+                                        <div>
+                                            <span>Land Surface</span>
+                                                <div>
+                                                    <i class="fa-solid fa-ruler-combined"></i><span v-html="form.landSurface"></span><span> m²</span>
+                                                </div>
+                                        </div>
+                                        <div>
+                                            <span>Garden</span>
+                                                <div>
+                                                    <i class="fa-sharp fa-solid fa-tree"></i><span v-html="form.gardenArea"></span><span> m²</span>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="price">
+                                        <span>Immo Eliza Etimation:</span>
+                                        <span><span v-html="est_price"></span> €</span>
+                                    </div>
+                                    </div>
+                            </div>
+                            
+                        </div>
+                </div>
             </div>
+
         </div>
     </div>
 
@@ -134,14 +201,113 @@
     const { createApp } = Vue
     createApp({
         data() {
-        return {
-            sliderRooms: 5,
-            sliderLivingArea : 100,
-            sliderFacades : 3,
-            sliderGardenArea : 0,
-            sliderLandSurface: 0
+            return {
+                form :{
+                    rooms: 5,
+                    livingArea : 100,
+                    facades : 2,
+                    gardenArea : 0,
+                    landSurface: 0,
+                    province: 'Province_Bruxelles',
+                    subtype: 'Subtype_HOUSE',
+                    state: 'State of building_AS_NEW',
+                },
+                est_price : 0,
+                
+            }
+        },
+        methods:{
+            async handleSubmit(){
+                const data = {...this.form}
+                console.log(data)
+                const baseURL = 'http://localhost:5000'
+                const response = await fetch(baseURL + '/form', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin':'*'
+                    },
+                    body: JSON.stringify({ data })
+                })
+                const response_json = await response.json()
+                console.log(response_json.result)
+                this.est_price = response_json.result
+                // console.log(response_json)
+            }                
+        },
+        computed:{
+            stateCounter: function(){
+                stateDict = {
+                    "State of building_AS_NEW": 6,
+                    "State of building_GOOD": 5,
+                    "State of building_JUST_RENOVATED": 4,
+                    "State of building_TO_BE_DONE_UP": 3,
+                    "State of building_TO_RENOVATE": 2,
+                    "State of building_TO_RESTORE": 1,
+                    "State of building_None": 0
+                }
+                if (this.form.state != ''){
+                    return stateDict[this.form.state]
+                }
+            },
+            subtypes: function(){
+                subtypeDict = {
+                    "Subtype_HOUSE" : "house",
+                    "Subtype_VILLA" : "villa",
+                    "Subtype_BUNGALOW" : "bungalow",
+                    "Subtype_FARMHOUSE" : "farmhouse",
+                    "Subtype_CASTLE" : "castle",
+                    "Subtype_CHALET" : "chalet",
+                    "Subtype_COUNTRY_COTTAGE" : "country cottage",
+                    "Subtype_EXCEPTIONAL_PROPERTY" : "exeptional property",        
+                    "Subtype_KOT" : "kot",
+                    "Subtype_LOFT" : "loft",
+                    "Subtype_MANOR_HOUSE" : "manor house",
+                    "Subtype_MANSION" : "mansion",
+                    "Subtype_MIXED_USE_BUILDING" : "mixed use building",
+                    "Subtype_OTHER_PROPERTY" : "other property",
+                    "Subtype_SERVICE_FLAT" : "service flat",
+                    "Subtype_TOWN_HOUSE" : "town house"
+                }
+                if ( this.form.subtype != ''){
+                    subtype_capitalized = this.form.subtype[0].toUpperCase() + this.form.subtype.substring(1);
+                    return subtypeDict[subtype_capitalized]
+                }
+                else return 'Home'
+            },
+            province: function(){
+                provinceDict = {
+                    "Province_Bruxelles" : "Bruxelles",
+                    "Province_Flandre_occidentale" : "Flandre Occidentale",
+                    "Province_Flandre_orientale" : "Flandre Orientale",
+                    "Province_Anvers" : "Anvers",
+                    "Province_Limbourg" : "Limbourg",
+                    "Province_Brabant_flamand" : "Brabant Flamand",
+                    "Province_Brabant_wallon" : "Brabant Wallon",
+                    "Province_Namur" : "Namur",
+                    "Province_Liege" : "Liege",
+                    "Province_Hainaut" : "Hainaut",
+                    "Province_Luxembourg" : "Luxembourg",
+                }
+                if ( this.form.province != ''){
+                    return provinceDict[this.form.province]
+                }
+                else return 'Province'
+            },
+            urlUnsplash: function(){
+                subtypeList = ['house', 'villa', 'castle', 'loft', 'farmhouse', 'mansion', 'town house', 'manor house', 'country cottage']
+                if(subtypeList.includes(this.subtypes)){
+                    return `https://source.unsplash.com/random/?${this.subtypes},estate`
+                }
+                else return `https://source.unsplash.com/random/?real,estate`
+            },
+            submit_button: function(){
+                if ( this.est_price != 0){
+                    return 'Update'
+                }
+                else return 'Evaluate'
+            }
         }
-    }
     }).mount('#app')
 </script>
 

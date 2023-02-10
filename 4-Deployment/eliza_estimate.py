@@ -34,7 +34,7 @@ def form():
     if request.method == 'POST':
         # Load an empty dataframe with the same column names as X_test
         X_template = loadXtemplate()
-
+        
         # Fill the X_template dataframe with values from the html form
         X_request = fillXtemplate(X_template)
         

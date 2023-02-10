@@ -23,12 +23,16 @@ $padding-tp: 50px;
 
 $width-left: 50%;
 $width-right:50%; */
-
+:root{
+  --grey: transparent;
+  --font-title: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  --font-card: "Jost", sans-serif;
+}
 body, html {
-    height: 100%;
+    
     /* font-family: Arial; */
     box-sizing: border-box;
-    font-family: "Jost", sans-serif;
+    font-family: var(--font-card);
     font-weight: 400;
 }
 .banner {
@@ -74,7 +78,7 @@ body, html {
     text-align: center;
     padding: 2rem 1rem;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 1rem;
   }
   
   .topnav a:hover {
@@ -86,10 +90,10 @@ body, html {
 /* The hero image */
 .hero-image {
   /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../image/backgroung.jpg");
+  background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../image/backgroung.jpg");
 
   /* Set a specific height */
-  height: 100%;
+  height: 100wh;
 
   /* Position and center the image to scale nicely on all screens */
   background-position: right;
@@ -110,21 +114,29 @@ body, html {
 .form-container{
     display: flex;
     justify-content: space-between;
-    margin-top: 7rem;
+    margin: 4rem 2rem;
+}
+
+.form-group  p{
+  color: black;
+}
+
+label{
+  font-family: var(--font-card);
+}
+input{
+  font-family: var(--font-card);
 }
 .form-left{
-    
     max-width: 200px;
     height: fit-content;
     padding: 19px;
     background-color: white;
-    border-radius: 10px;
-    box-shadow: 10px 5px 5px #1a1818;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
-.form-group{
-    
-}
+
 .form-right{
     flex-direction: column;
 }
@@ -132,7 +144,7 @@ body, html {
     max-width: 200px;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 5px, #1a1818;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     align-items: flex-end;
 }
 .card-top-image{
@@ -148,9 +160,9 @@ body, html {
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
     width: 100%; /* Full-width */
-    height: 20px; /* Specified height */
+    height: 7px; /* Specified height */
     border-radius: 3px;
-    /* margin: 5px; */
+    margin: 9px 0;
     background: #d3d3d3; /* Grey background */
     outline: none; /* Remove outline */
     opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
@@ -183,7 +195,7 @@ select{
 h1 {
     color: white;
     font-size: 3em;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: var(--font-title);
     font-size: 50px;
     font-weight: 600;
     margin-top: 3rem;
@@ -194,18 +206,24 @@ h1 {
 
 p{
     color: white;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: var(--font-title);
     font-weight: 400;
 
 }
 button{
-    align-content: center;
     font-size: 2rem;
     padding: 1rem;
-    margin: 2rem;
+    margin: 1rem auto;
     background-color: #7776;
     color: white;
     border-radius: 12px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+  }
+  button:hover{
+  background-color: #775;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 .form-bottom{
     text-align: center;
@@ -230,7 +248,8 @@ button{
     background-color: white;
     position: relative;
     right: 0;
-    box-shadow: 10px 5px 5px #071434;
+    border-radius:1rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
   
   .container .box:first-of-type:before {
@@ -252,14 +271,16 @@ button{
     border-style: solid;
     border-color: transparent transparent transparent #ea723d;
     position: absolute;
-    left: 98px;
+    left: 97px;
     top: 0;
     transform: translateY(-50%);
   }
   
   .container .box .top {
     position: relative;
-    background-color: red;
+    height: 195px;
+    border-radius: 1rem;
+    background-color: rgb(26, 24, 24);
   }
 
   
@@ -273,6 +294,7 @@ button{
     height: 200px;
     margin-bottom: -4px;
     object-fit: cover;
+    border-radius: 1rem;
   }
   
   .container .box .top span {
@@ -364,5 +386,93 @@ button{
     margin: 0 auto;
     color: #34383b;
     font-size: 32px;
+  }
+  
+
+  /* Footer */
+
+  .footer-container{
+    width: 100%;
+    margin:auto;
+  }
+  .footer-row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  ul{
+    list-style: none;
+  }
+  .footer{
+    /* background-color: #7777; */
+    
+  }
+  .footer-col{
+      width: 25%;
+      padding: 0 15px;
+  }
+  .footer-col h4{
+    font-size: 18px;
+    color: #ffffff;
+    text-transform: capitalize;
+    margin-bottom: 35px;
+    font-weight: 500;
+    position: relative;
+  }
+  .footer-col h4::before{
+    content: '';
+    position: absolute;
+    left:0;
+    bottom: -10px;
+    background-color: #e91e63;
+    height: 2px;
+    box-sizing: border-box;
+    width: 50px;
+  }
+  .footer-col ul li:not(:last-child){
+    margin-bottom: 10px;
+  }
+  .footer-col ul li a{
+    font-size: 16px;
+    text-transform: capitalize;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 300;
+    color: #bbbbbb;
+    display: block;
+    transition: all 0.3s ease;
+  }
+  .footer-col ul li a:hover{
+    color: #ffffff;
+    padding-left: 8px;
+  }
+  .footer-col .social-links a{
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    background-color: rgba(255,255,255,0.2);
+    margin:0 10px 10px 0;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    color: #ffffff;
+    transition: all 0.5s ease;
+  }
+  .footer-col .social-links a:hover{
+    color: #24262b;
+    background-color: #ffffff;
+  }
+  
+  /*responsive*/
+  @media(max-width: 767px){
+    .footer-col{
+      width: 50%;
+      margin-bottom: 30px;
+  }
+  }
+  @media(max-width: 574px){
+    .footer-col{
+      width: 100%;
+  }
   }
   

@@ -23,7 +23,7 @@
     <div class="banner">
         <div class="banner-content">
             <div class="title">
-                <h1>Estimate Your Real Estate</h1>
+                <h1>Real Estate Estimation</h1>
                 <p>Easy to buy & sell your property with Immo Eliza, Top-Class Real Estate Center</p>
             </div>
         </div>
@@ -139,61 +139,97 @@
                     </form>
                 </div>
                 <div class="form-right">
-                            <div class="container banner">
-                                <div class="box">
-                                    <div class="top">
-                                        <!-- <img src="https://cdn.pixabay.com/photo/2014/07/10/17/18/large-home-389271__340.jpg" alt="" /> -->
-                                        <!-- <img src="https://source.unsplash.com/random/150×200/?house" alt="building"  > -->
-                                        <img :src= urlUnsplash alt="building"  >
-                                        
+                    <div class="container banner">
+                            <div class="box">
+                                <div class="top">
+                                    <!-- <img src="https://cdn.pixabay.com/photo/2014/07/10/17/18/large-home-389271__340.jpg" alt="" /> -->
+                                    <!-- <img src="https://source.unsplash.com/random/150×200/?house" alt="building"  > -->
+                                    <img :src= urlUnsplash alt="building"  >
+                                </div>
+                                <div class="bottom">
+                                    <h3><span v-html="subtypes"></span> In <span v-html="province"></span></h3>
+                                    <div class="bottom-title">
+                                        <h5>Description</h5>
+                                        <div><i v-for="n in stateCounter" class="fa-sharp fa-solid fa-star"></i></div>
                                     </div>
-                                    <div class="bottom">
-                                        <h3><span v-html="subtypes.toUpperCase()"></span> In <span v-html="province"></span></h3>
-                                        <div class="bottom-title">
-                                            <h5>Description</h5>
-                                            <div><i v-for="n in stateCounter" class="fa-sharp fa-solid fa-star"></i></div>
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit repellendus cupiditate nihil rem totam ut eaque soluta odit eum cum, esse, atque praesentium? Neque debitis sequi possimus animi necessitatibus.
-                                        </p>
-                                    <div class="advants">
-                                        <div>
-                                            <span>Living Area</span>
-                                                <div>
-                                                    <i class="fa-sharp fa-solid fa-house-chimney"></i
-                                                    ><span v-html="form.livingArea"></span><span> m²</span>
-                                                </div>
-                                        </div>
-                                        <div>
-                                            <span>Rooms</span>
-                                                <div>
-                                                    <i class="fa-sharp fa-solid fa-bed"></i><span v-html="form.rooms"></span>
-                                                </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit repellendus cupiditate nihil rem totam ut eaque soluta odit eum cum, esse, atque praesentium? Neque debitis sequi possimus animi necessitatibus.
+                                    </p>
+                                <div class="advants">
+                                    <div>
+                                        <span>Living Area</span>
+                                            <div>
+                                                <i class="fa-sharp fa-solid fa-house-chimney"></i
+                                                ><span v-html="form.livingArea"></span><span> m²</span>
                                             </div>
-                                        <div>
-                                            <span>Land Surface</span>
-                                                <div>
-                                                    <i class="fa-solid fa-ruler-combined"></i><span v-html="form.landSurface"></span><span> m²</span>
-                                                </div>
+                                    </div>
+                                    <div>
+                                        <span>Rooms</span>
+                                            <div>
+                                                <i class="fa-sharp fa-solid fa-bed"></i><span v-html="form.rooms"></span>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <span>Garden</span>
-                                                <div>
-                                                    <i class="fa-sharp fa-solid fa-tree"></i><span v-html="form.gardenArea"></span><span> m²</span>
-                                                </div>
-                                        </div>
+                                    <div>
+                                        <span>Land Surface</span>
+                                            <div>
+                                                <i class="fa-solid fa-ruler-combined"></i><span v-html="form.landSurface"></span><span> m²</span>
+                                            </div>
                                     </div>
-                                    <div class="price">
-                                        <span>Immo Eliza Etimation:</span>
-                                        <span><span v-html="est_price"></span> €</span>
+                                    <div>
+                                        <span>Garden</span>
+                                            <div>
+                                                <i class="fa-sharp fa-solid fa-tree"></i><span v-html="form.gardenArea"></span><span> m²</span>
+                                            </div>
                                     </div>
-                                    </div>
-                            </div>
-                            
+                                </div>
+                                <div class="price">
+                                    <span>Immo Eliza Etimation:</span>
+                                    <span><span v-html="est_price"></span> €</span>
+                                </div>
+                                </div>
                         </div>
+                        
+                    </div>
                 </div>
             </div>
-
+        </div>
+    </div>
+    <div class="banner">
+        <div class="banner-content">
+            <footer class="footer">
+                <div class="footer-container">
+                    <div class="footer-row">
+                    <div class="footer-col">
+                        <h4>company</h4>
+                        <ul>
+                        <li><a href="#">about us</a></li>
+                        <li><a href="#">our services</a></li>
+                        <li><a href="#">privacy policy</a></li>
+                        <li><a href="#">affiliate program</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>get help</h4>
+                        <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">shipping</a></li>
+                        <li><a href="#">returns</a></li>
+                        <li><a href="#">order status</a></li>
+                        <li><a href="#">payment options</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>follow us</h4>
+                        <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </footer>
         </div>
     </div>
 
@@ -219,19 +255,32 @@
         methods:{
             async handleSubmit(){
                 const data = {...this.form}
-                console.log(data)
+                console.log(`Post request datas :${data}`)
                 const baseURL = 'http://localhost:5000'
-                const response = await fetch(baseURL + '/form', {
-                    method: 'POST',
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'Access-Control-Allow-Origin':'*'
-                    },
-                    body: JSON.stringify({ data })
-                })
-                const response_json = await response.json()
-                console.log(response_json.result)
-                this.est_price = response_json.result
+                try{
+                    const response = await fetch(baseURL + '/form', {
+                        method: 'POST',
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin':'*'
+                        },
+                        body: JSON.stringify({ data })
+                    })
+                    statCode = response.status
+                    console.log(statCode)
+                    if(statCode == 200){
+                        const response_json = await response.json()
+                        console.log(response_json.result)
+                        this.est_price = response_json.result
+                    }
+                    else{
+                        alert(`Status code : ${statCode}, try again.`)
+                    }
+                    
+                }
+                catch(error){
+                    alert(`Something went wrong, error: ${error}, try again`)
+                }
                 // console.log(response_json)
             }                
         },
@@ -297,7 +346,7 @@
             urlUnsplash: function(){
                 subtypeList = ['house', 'villa', 'castle', 'loft', 'farmhouse', 'mansion', 'town house', 'manor house', 'country cottage']
                 if(subtypeList.includes(this.subtypes)){
-                    return `https://source.unsplash.com/random/?${this.subtypes},estate`
+                    return `https://source.unsplash.com/random/?${this.subtypes}`
                 }
                 else return `https://source.unsplash.com/random/?real,estate`
             },

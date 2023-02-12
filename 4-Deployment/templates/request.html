@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="shortcut icon" href="../static/icons/favicon.png" type="image/x-icon">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://kit.fontawesome.com/6cf1f970c5.js" crossorigin="anonymous"></script>
-
-    <title>Results</title>
+    <title>ImmoEliza</title>
 </head>
-<body class="hero-image">
+<body class="background-image">
     <div class="banner nav">
         <div class="banner-content topnav">
             <p class="underline"></p>
@@ -37,7 +37,7 @@
                             <p>Select features:</p>
                             
                             <div>
-                                <label for="living_area"> Living area:<span v-html="form.livingArea"></span> m²:</label>
+                                <label for="living_area"> Living area: <span v-html="form.livingArea"></span> m²</label>
                                 <div>
                                     <input type="range" name="living area" min="10" max="500" step="10" class="slider" v-model="form.livingArea" >
                                 </div>
@@ -56,18 +56,18 @@
                                     <input type="range" name="number of facades" min="2" max="4" class="slider" v-model="form.facades" >
                                 </div>
                             </div>
-                                
+
                             <div>
-                                <label for="garden_area"> Garden area: <span v-html="form.gardenArea"></span> m²:</label>
+                                <label for="land_surface"> Land surface: <span v-html="landSurface"></span> m²</label>
                                 <div>
-                                    <input type="range" name="garden area" min="0" max="5000" step="50" class="slider" v-model="form.gardenArea"  >
+                                    <input type="range" name="land surface" min="0" max="5000" step="50"  class="slider" v-model="form.landSurface"  >
                                 </div>
                             </div>
                                 
                             <div>
-                                <label for="land_surface"> Land surface: <span v-html="form.landSurface"></span> m²</label>
+                                <label for="garden_area"> Garden area: <span v-html="form.gardenArea"></span> m²</label>
                                 <div>
-                                    <input type="range" name="land surface" min="0" max="5000" step="50"  class="slider" v-model="form.landSurface"  >
+                                    <input type="range" name="garden area" min="0" :max="maxGardenSlider" step="50" class="slider" v-model="form.gardenArea"  >
                                 </div>
                             </div>
                                 
@@ -172,7 +172,7 @@
                                     <div>
                                         <span>Land Surface</span>
                                             <div>
-                                                <i class="fa-solid fa-ruler-combined"></i><span v-html="form.landSurface"></span><span> m²</span>
+                                                <i class="fa-solid fa-ruler-combined"></i><span v-html="landSurface"></span><span> m²</span>
                                             </div>
                                     </div>
                                     <div>
@@ -255,10 +255,12 @@
         methods:{
             async handleSubmit(){
                 const data = {...this.form}
-                console.log(`Post request datas :${data}`)
-                const baseURL = 'http://localhost:5000'
+                console.log(`Post request datas collected from input form`)
+                const baseUrl = window.location.protocol + '//' + window.location.host;
+                const apiUrl = baseUrl + '/form';
+                console.log(`Base Url: ${baseUrl}\n ApiUrl: ${apiUrl}`)
                 try{
-                    const response = await fetch(baseURL + '/form', {
+                    const response = await fetch(apiUrl, {
                         method: 'POST',
                         headers: { 
                             'Content-Type': 'application/json',
@@ -267,10 +269,10 @@
                         body: JSON.stringify({ data })
                     })
                     statCode = response.status
-                    console.log(statCode)
+                    console.log(`Post request status code:${statCode}`)
                     if(statCode == 200){
                         const response_json = await response.json()
-                        console.log(response_json.result)
+                        console.log(`Response received: ${response_json.result}`)
                         this.est_price = response_json.result
                     }
                     else{
@@ -281,10 +283,15 @@
                 catch(error){
                     alert(`Something went wrong, error: ${error}, try again`)
                 }
-                // console.log(response_json)
             }                
         },
         computed:{
+            landSurface: function(){
+                return Math.max(
+                    parseInt(this.form.landSurface),
+                    parseInt(this.form.livingArea)
+                )
+            },
             stateCounter: function(){
                 stateDict = {
                     "State of building_AS_NEW": 6,
@@ -319,8 +326,9 @@
                     "Subtype_TOWN_HOUSE" : "town house"
                 }
                 if ( this.form.subtype != ''){
-                    subtype_capitalized = this.form.subtype[0].toUpperCase() + this.form.subtype.substring(1);
-                    return subtypeDict[subtype_capitalized]
+                    subtype = subtypeDict[this.form.subtype]
+                    subtype_capitalized = subtype[0].toUpperCase() + subtype.substring(1);
+                    return subtype_capitalized
                 }
                 else return 'Home'
             },
@@ -345,10 +353,13 @@
             },
             urlUnsplash: function(){
                 subtypeList = ['house', 'villa', 'castle', 'loft', 'farmhouse', 'mansion', 'town house', 'manor house', 'country cottage']
-                if(subtypeList.includes(this.subtypes)){
-                    return `https://source.unsplash.com/random/?${this.subtypes}`
+                if(subtypeList.includes(this.subtypes.toLowerCase())){
+                    return `https://source.unsplash.com/random/?${this.subtypes.toLowerCase()}`
                 }
                 else return `https://source.unsplash.com/random/?real,estate`
+            },
+            maxGardenSlider: function(){
+                return (parseInt(this.form.landSurface) - parseInt(this.form.livingArea))
             },
             submit_button: function(){
                 if ( this.est_price != 0){

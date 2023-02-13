@@ -5,7 +5,7 @@ def loadmodel():
     try:
         #Load trained model
         _model = pickle.load(open("model/model.pkl","rb"))
-        print(type(_model))
+        print(f"Model loaded: {type(_model)}")
         return (_model)
     except:
         print('Unable to load model!')

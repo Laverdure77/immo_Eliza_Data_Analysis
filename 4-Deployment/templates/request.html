@@ -94,7 +94,7 @@
                             <div>
                                 <label for="peb_select">PEB</label>
                                     <div>
-                                        <select name="peb" id="peb_select" v-model="peb">
+                                        <select name="peb" id="peb_select" v-model="peb" required="required">
                                             <option value="peb_g_nb.png">--Please select a PEB--</option>
                                             <option value="peb_aplusplus.png"> A++</option>
                                             <option value="peb_aplus.png"> A+</option>
@@ -263,22 +263,25 @@
                     facades : 2,
                     gardenArea : 0,
                     landSurface: 0,
-                    province: 'None',
-                    subtype: 'None',
-                    state: 'None',
+                    province: 'Province_Bruxelles',
+                    subtype: 'Subtype_HOUSE',
+                    state: 'State of building_GOOD',
                 },
                 est_price : 0,
-                peb: "peb_g_nb.png"
+                peb: "peb_g_nb.png",
+                fetching_price : false
             }
         },
         methods:{
             async handleSubmit(){
+                
                 const data = {...this.form}
                 console.log(`Post request datas collected from input form`)
                 const baseUrl = window.location.protocol + '//' + window.location.host;
                 const apiUrl = baseUrl + '/form';
                 console.log(`Base Url: ${baseUrl}\n ApiUrl: ${apiUrl}`)
                 try{
+                    // this.fetching_price == true
                     const response = await fetch(apiUrl, {
                         method: 'POST',
                         headers: { 
@@ -292,14 +295,16 @@
                     if(statCode == 200){
                         const response_json = await response.json()
                         console.log(`Response received: ${response_json.result}`)
+                        // this.fetching_price == false
                         this.est_price = response_json.result
                     }
                     else{
-                        alert(`Status code : ${statCode}, try again.`)
+                        // this.fetching_price == false
+                        alert(`Status code : ${statCode}, Please select all fields.`)
                     }
-                    
                 }
                 catch(error){
+                    // this.fetching_price == false
                     alert(`Something went wrong, error: ${error}, try again`)
                 }
             }                
@@ -387,10 +392,13 @@
                 return (parseInt(this.form.landSurface) - parseInt(this.form.livingArea))
             },
             submit_button: function(){
-                if ( this.est_price != 0){
-                    return 'Update'
+                if ( this.est_price == 0){
+                    return 'Evaluate'
                 }
-                else return 'Evaluate'
+                // if (this.fetching_price = true){
+                //     return 'Processing'
+                // }
+                else return 'Update'
             }
         }
     }).mount('#app')

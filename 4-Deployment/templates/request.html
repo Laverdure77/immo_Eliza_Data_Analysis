@@ -34,7 +34,7 @@
                 <div class="form-left">
                     <form @submit.prevent="handleSubmit">
                         <div class="form-group">
-                            <p>Select features:</p>
+                            <p>Select Features:</p>
                             
                             <div>
                                 <label for="living_area"> Living area: <span v-html="form.livingArea"></span> m²</label>
@@ -75,7 +75,7 @@
                                 <label for="province_select">Province</label>
                                     <div>
                                         <select name="province" id="province_select" v-model="form.province" required="required">
-                                            <option value="">--Please select a Province--</option>
+                                            <option value="None">--Please select a Province--</option>
                                             <option value="Province_Bruxelles">Bruxelles</option>
                                             <option value="Province_Flandre_occidentale">Flandre Occidentale</option>
                                             <option value="Province_Flandre_orientale">Flandre Orientale</option>
@@ -90,12 +90,30 @@
                                         </select>
                                     </div>
                             </div>
+
+                            <div>
+                                <label for="peb_select">PEB</label>
+                                    <div>
+                                        <select name="peb" id="peb_select" v-model="peb">
+                                            <option value="peb_g_nb.png">--Please select a PEB--</option>
+                                            <option value="peb_aplusplus.png"> A++</option>
+                                            <option value="peb_aplus.png"> A+</option>
+                                            <option value="peb_a.png"> A</option>
+                                            <option value="peb_b.png"> B</option>
+                                            <option value="peb_c.png"> C</option>
+                                            <option value="peb_d.png"> D</option>
+                                            <option value="peb_e.png"> E</option>
+                                            <option value="peb_f.png"> F</option>
+                                            <option value="peb_g.png"> G</option>
+                                        </select>
+                                    </div>
+                            </div>
                                 
                             <div>
                                 <label for="subtype">Subtype</label>
                                     <div>
                                         <select name="subtype" id="subtype" v-model="form.subtype" required="required">
-                                            <option value="">--Please select an option--</option>
+                                            <option value="None">--Please select an option--</option>
                                             <option value="Subtype_HOUSE">House</option>
                                             <option value="Subtype_VILLA">Villa</option>
                                             <option value="Subtype_BUNGALOW">Bungalow</option>
@@ -120,7 +138,7 @@
                                 <label for="state_of_builging">State of building</label>
                                     <div>
                                         <select name="state" id="state_of_builging" v-model='form.state' required="required">
-                                            <option value="">--Please select an option--</option>
+                                            <option value= "None">--Please select an option--</option>
                                             <option value="State of building_None">None</option>
                                             <option value="State of building_AS_NEW">As new</option>
                                             <option value="State of building_GOOD">Good</option>
@@ -144,12 +162,13 @@
                                 <div class="top">
                                     <!-- <img src="https://cdn.pixabay.com/photo/2014/07/10/17/18/large-home-389271__340.jpg" alt="" /> -->
                                     <!-- <img src="https://source.unsplash.com/random/150×200/?house" alt="building"  > -->
-                                    <img :src= urlUnsplash alt="building"  >
+                                    <img :src= urlUnsplash alt="building">
                                 </div>
                                 <div class="bottom">
                                     <h3><span v-html="subtypes"></span> In <span v-html="province"></span></h3>
+                                    <h4>Description</h4>
                                     <div class="bottom-title">
-                                        <h5>Description</h5>
+                                        <img class="peb" :src= urlPeb alt="peb">
                                         <div><i v-for="n in stateCounter" class="fa-sharp fa-solid fa-star"></i></div>
                                     </div>
                                     <p>
@@ -244,12 +263,12 @@
                     facades : 2,
                     gardenArea : 0,
                     landSurface: 0,
-                    province: 'Province_Bruxelles',
-                    subtype: 'Subtype_HOUSE',
-                    state: 'State of building_AS_NEW',
+                    province: 'None',
+                    subtype: 'None',
+                    state: 'None',
                 },
                 est_price : 0,
-                
+                peb: "peb_g_nb.png"
             }
         },
         methods:{
@@ -300,7 +319,8 @@
                     "State of building_TO_BE_DONE_UP": 3,
                     "State of building_TO_RENOVATE": 2,
                     "State of building_TO_RESTORE": 1,
-                    "State of building_None": 0
+                    "State of building_None": 0,
+                    "None": 0
                 }
                 if (this.form.state != ''){
                     return stateDict[this.form.state]
@@ -308,6 +328,7 @@
             },
             subtypes: function(){
                 subtypeDict = {
+                    "None" : "type",
                     "Subtype_HOUSE" : "house",
                     "Subtype_VILLA" : "villa",
                     "Subtype_BUNGALOW" : "bungalow",
@@ -334,6 +355,7 @@
             },
             province: function(){
                 provinceDict = {
+                    "None" : "Province",
                     "Province_Bruxelles" : "Bruxelles",
                     "Province_Flandre_occidentale" : "Flandre Occidentale",
                     "Province_Flandre_orientale" : "Flandre Orientale",
@@ -357,6 +379,9 @@
                     return `https://source.unsplash.com/random/?${this.subtypes.toLowerCase()}`
                 }
                 else return `https://source.unsplash.com/random/?real,estate`
+            },
+            urlPeb: function(){
+                return `../static/image/peb/${this.peb}`
             },
             maxGardenSlider: function(){
                 return (parseInt(this.form.landSurface) - parseInt(this.form.livingArea))

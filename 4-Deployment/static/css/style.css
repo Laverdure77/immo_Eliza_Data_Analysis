@@ -1,11 +1,15 @@
 /* Declare variables */
 :root {
   /* Colors */
-  --grey: grey;
-  --lightBlue: #6b82dd; 
   --lightGrey: #a2a8d3;
+  --grey: grey;
+  --lightBlue: #407088; 
   --blue: #38598b;
   --middleBlue: #113f67;
+  --pastelGreen: #9fd3c7;
+  /* Sliders */
+  --slider: var(--blue);
+  --bullet: var(--lightBlue);
   /* Fonts */
   --font-title: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   --font-card: "Jost", sans-serif;
@@ -106,6 +110,8 @@ p {
   color: white;
   font-family: var(--font-title);
   font-weight: 400;
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
 }
 
 /* Form */
@@ -149,18 +155,30 @@ input {
   height: 7px; /* Specified height */
   border-radius: 3px;
   margin: 9px 0;
-  background: #d3d3d3; /* Grey background */
+  background: var(--slider); /* Grey background */
   outline: none; /* Remove outline */
   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
   -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
   transition: opacity 0.2s;
 }
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%; 
+  background:var(--bullet);
+  outline-width: 1px;
+  outline-color: var(--slider);
+  cursor: pointer;
+}
 
 select {
   width: 100%;
   padding: 5px;
-  border: 1px solid #d3d3d3;
+  border: 3px solid var(--bullet);
   border-radius: 3px;
+  margin: 0.3rem 0;
 }
 
 .form-bottom {
@@ -170,6 +188,7 @@ select {
 button {
   font-size: 2rem;
   padding: 1rem;
+  width: 100%;
   margin: 1rem auto;
   background-color: var(--lightBlue);
   color: white;
@@ -220,7 +239,7 @@ button:active {
 /* FontAwesome Icons */
 .fa-solid,
 .fas {
-  color: #768187;
+  color: var(--lightBlue);
   font-weight: 900;
 }
 
@@ -236,7 +255,7 @@ button:active {
 
 .container .box:first-of-type:before {
   content: "Your property";
-  background-color: #ea723d;
+  background-color: var(--blue);
   color: white;
   font-size: 13px;
   padding: 4px 10px;
@@ -251,7 +270,7 @@ button:active {
   content: "";
   border-width: 12px;
   border-style: solid;
-  border-color: transparent transparent transparent #ea723d;
+  border-color: transparent transparent transparent var(--blue);
   position: absolute;
   left: 97px;
   top: 0;
@@ -272,6 +291,14 @@ button:active {
 .container .box .top img {
   width: 100%;
   height: 200px;
+  margin-bottom: -4px;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+.container .box .top img .peb {
+  width: 100%;
+  height: 100%;
   margin-bottom: -4px;
   object-fit: cover;
   border-radius: 1rem;
@@ -302,7 +329,7 @@ button:active {
   margin: 15px 0;
   font-size: 13px;
   line-height: 1.4;
-  color: #777;
+  color: var(--lightBlue);
 }
 
 .container .box .bottom .advants {
@@ -332,7 +359,7 @@ button:active {
 
 .container .box .bottom .advants > div > div i {
   padding-right: 4px;
-  color: #777;
+  color: var(--lightBlue);
   font-size: 22px;
 }
 
@@ -342,7 +369,7 @@ button:active {
 }
 
 .container .box .bottom .advants > div > div > span > span {
-  color: #777;
+  color: var(--lightBlue);
   font-weight: normal;
   margin-left: 5px;
 }
@@ -362,7 +389,7 @@ button:active {
 .estimation {
   display: inline-block;
   margin: 0 auto;
-  color: #34383b;
+  color: var(--middleBlue);
   font-size: 32px;
 }
 
@@ -401,7 +428,7 @@ ul {
   position: absolute;
   left: 0;
   bottom: -10px;
-  background-color: #e91e63;
+  background-color: var(--blue) ;
   height: 2px;
   box-sizing: border-box;
   width: 50px;

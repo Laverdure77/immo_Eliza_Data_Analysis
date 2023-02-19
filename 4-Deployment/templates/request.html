@@ -138,7 +138,7 @@
                                 <label for="state_of_builging">State of building</label>
                                     <div>
                                         <select name="state" id="state_of_builging" v-model='form.state' required="required">
-                                            <option value= "None">--Please select an option--</option>
+                                            <option value= "">--Please select an option--</option>
                                             <option value="State of building_None">None</option>
                                             <option value="State of building_AS_NEW">As new</option>
                                             <option value="State of building_GOOD">Good</option>
@@ -169,7 +169,10 @@
                                     <h4>Description</h4>
                                     <div class="bottom-title">
                                         <img class="peb" :src= urlPeb alt="peb">
-                                        <div><i v-for="n in stateCounter" class="fa-sharp fa-solid fa-star"></i></div>
+                                        <div>
+                                            <i v-if="stateCounter > 0" v-for="n in stateCounter" class="fa-sharp fa-solid fa-star"></i>
+                                            <i v-else v-for="n in 6" class="fa-regular fa-star"></i>
+                                        </div>
                                     </div>
                                     <p>
                                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit repellendus cupiditate nihil rem totam ut eaque soluta odit eum cum, esse, atque praesentium? Neque debitis sequi possimus animi necessitatibus.
@@ -265,7 +268,7 @@
                     landSurface: 0,
                     province: 'Province_Bruxelles',
                     subtype: 'Subtype_HOUSE',
-                    state: 'State of building_GOOD',
+                    state: '',
                 },
                 est_price : 0,
                 peb: "peb_g_nb.png",
@@ -325,7 +328,7 @@
                     "State of building_TO_RENOVATE": 2,
                     "State of building_TO_RESTORE": 1,
                     "State of building_None": 0,
-                    "None": 0
+                    
                 }
                 if (this.form.state != ''){
                     return stateDict[this.form.state]
@@ -389,7 +392,7 @@
                 return `../static/image/peb/${this.peb}`
             },
             maxGardenSlider: function(){
-                return (parseInt(this.form.landSurface) - parseInt(this.form.livingArea))
+                return Math.max((parseInt(this.form.landSurface) - parseInt(this.form.livingArea)), 0)
             },
             submit_button: function(){
                 if ( this.est_price == 0){
